@@ -10,6 +10,6 @@ COPY . .
 
 EXPOSE 3000
 
-RUN tsc
+RUN npm run build
 
 CMD ["cd", "dist", "&&", "node", "index.js"]
