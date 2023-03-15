@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install && npm install ts-node -g && npm install typescript -g && tsc
+RUN npm install
 
 COPY . .
 
 EXPOSE 3000
+
+RUN tsc
 
 CMD ["cd", "dist", "&&", "node", "index.js"]
