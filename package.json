@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "nodemon --exec ts-node index.ts",
+    "build": "tsc",
     "docker-build": "docker build -t feature-toggle .",
     "docker-run": "docker run -p 3000:3000 feature-toggle",
     "test": "jest"
