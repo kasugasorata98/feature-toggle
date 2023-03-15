@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "NODE_ENV=production node ./dist/index.js",
     "dev": "nodemon --exec ts-node index.ts",
-    "build": "tsc",
+    "build": "NODE_ENV=production tsc",
+    "clean": "rm -rf ./dist/*",
     "docker-build": "docker build -t feature-toggle .",
     "docker-run": "docker run -p 3000:3000 feature-toggle",
     "test": "jest"
