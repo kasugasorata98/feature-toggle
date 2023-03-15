@@ -1,56 +1,130 @@
 {
-  "family": "feature-toggle",
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "name": "feature-toggle",
-      "image": "779093773992.dkr.ecr.ap-southeast-1.amazonaws.com/feature-toggle:d62705bd029e764b24f41deea78400574220b08b",
-      "cpu": 0,
+      "dnsSearchDomains": null,
+      "environmentFiles": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/feature-toggle",
+          "awslogs-region": "ap-southeast-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": [],
       "portMappings": [
         {
-          "name": "feature-toggle-3000-tcp",
-          "containerPort": 3000,
-          "hostPort": 0,
+          "hostPort": 3000,
           "protocol": "tcp",
-          "appProtocol": "http"
+          "containerPort": 3000
         }
       ],
-      "essential": true,
+      "command": [],
+      "linuxParameters": null,
+      "cpu": 0,
       "environment": [
         {
-          "name": "PORT",
-          "value": "3000"
+          "name": "MONGODB_CONNECTION_STRING",
+          "value": "mongodb+srv://temp_user:temp_password@kasugasorata.2wi4b.mongodb.net/feature-access"
         },
         {
           "name": "NODE_ENV",
           "value": "staging"
         },
         {
-          "name": "MONGODB_CONNECTION_STRING",
-          "value": "mongodb+srv://temp_user:temp_password@kasugasorata.2wi4b.mongodb.net/feature-access"
+          "name": "PORT",
+          "value": "3000"
         }
       ],
-      "environmentFiles": [],
+      "resourceRequirements": null,
+      "ulimits": null,
+      "dnsServers": null,
       "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": null,
+      "dockerSecurityOptions": null,
+      "memory": null,
+      "memoryReservation": null,
       "volumesFrom": [],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/feature-toggle",
-          "awslogs-region": "ap-southeast-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
+      "stopTimeout": null,
+      "image": "779093773992.dkr.ecr.ap-southeast-1.amazonaws.com/feature-toggle:5446f707044181771c9e2918ffe150cd4d9fe2e4",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": null,
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": null,
+      "privileged": null,
+      "name": "feature-toggle"
     }
   ],
-  "taskRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
-  "executionRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
-  "networkMode": "bridge",
-  "requiresCompatibilities": ["EC2"],
-  "cpu": "1024",
+  "placementConstraints": [],
   "memory": "3072",
+  "taskRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
+  "compatibilities": ["EXTERNAL", "EC2"],
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:779093773992:task-definition/feature-toggle:3",
+  "family": "feature-toggle",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": ["EC2"],
+  "networkMode": "bridge",
   "runtimePlatform": {
-    "cpuArchitecture": "X86_64",
-    "operatingSystemFamily": "LINUX"
-  }
+    "operatingSystemFamily": "LINUX",
+    "cpuArchitecture": "X86_64"
+  },
+  "cpu": "1024",
+  "revision": 3,
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
 }
