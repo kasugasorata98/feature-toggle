@@ -1,97 +1,56 @@
 {
-  "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
+  "family": "feature-toggle",
   "containerDefinitions": [
     {
       "name": "feature-toggle",
-      "image": "779093773992.dkr.ecr.ap-southeast-1.amazonaws.com/cicd-ga-ecr-ecs-ec2:15a49e9870bcc9bbf2b8cfb2f547a5ba649a0d5d",
+      "image": "779093773992.dkr.ecr.ap-southeast-1.amazonaws.com/feature-toggle:d62705bd029e764b24f41deea78400574220b08b",
       "cpu": 0,
+      "portMappings": [
+        {
+          "name": "feature-toggle-3000-tcp",
+          "containerPort": 3000,
+          "hostPort": 0,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
       "environment": [
+        {
+          "name": "PORT",
+          "value": "3000"
+        },
         {
           "name": "NODE_ENV",
           "value": "staging"
-        },
-        {
-          "name": "PORT",
-          "value": 3000
         },
         {
           "name": "MONGODB_CONNECTION_STRING",
           "value": "mongodb+srv://temp_user:temp_password@kasugasorata.2wi4b.mongodb.net/feature-access"
         }
       ],
-      "secrets": null,
-      "memory": 128,
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
       "logConfiguration": {
         "logDriver": "awslogs",
-        "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/cicd-ga-ecr-ecs-ec2",
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/feature-toggle",
           "awslogs-region": "ap-southeast-1",
           "awslogs-stream-prefix": "ecs"
         }
-      },
-      "portMappings": [
-        {
-          "hostPort": 3000,
-          "protocol": "tcp",
-          "containerPort": 3000
-        }
-      ]
+      }
     }
   ],
-  "placementConstraints": [],
-  "memory": null,
   "taskRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
-  "compatibilities": ["EXTERNAL", "EC2"],
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:779093773992:task-definition/cicd-ga-ecr-ecs-ec2:15",
-  "family": "cicd-ga-ecr-ecs-ec2",
-  "requiresAttributes": [
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-awslogs"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-ecr-pull"
-    }
-  ],
-  "pidMode": null,
+  "executionRoleArn": "arn:aws:iam::779093773992:role/ecsTaskExecutionRole",
+  "networkMode": "bridge",
   "requiresCompatibilities": ["EC2"],
-  "networkMode": null,
-  "runtimePlatform": null,
-  "cpu": null,
-  "revision": 15,
-  "status": "ACTIVE",
-  "inferenceAccelerators": null,
-  "proxyConfiguration": null,
-  "volumes": []
+  "cpu": "1024",
+  "memory": "3072",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  }
 }

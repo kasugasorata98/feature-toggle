@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import MongooseClient from "./src/database/MongooseClient";
 import FeatureRoute from "./src/routes/v1/feature";
@@ -15,6 +15,11 @@ async function main() {
   );
 
   app.use("/feature", FeatureRoute);
+  app.get("/", (req: Request, res: Response) => {
+    res.json({
+      health_check: "ok",
+    });
+  });
 
   MongooseClient.connect(config.mongoDBString)
     .then(async (res) => {
