@@ -3,7 +3,7 @@ import production from "./production";
 import staging from "./staging";
 import dotenv from "dotenv";
 
-if (process.env.NODE_ENV !== "development") {
+if (!process.env.NODE_ENV) {
   dotenv.config();
 }
 
