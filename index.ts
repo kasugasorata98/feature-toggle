@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import MongooseClient from "./src/database/MongooseClient";
-import FeatureRoute from "./src/routes/v1/feature";
+import FeatureRouteV1 from "./src/routes/v1/feature";
 import { config } from "./src/configs";
 
 async function main() {
@@ -14,7 +14,7 @@ async function main() {
     })
   );
 
-  app.use("/feature", FeatureRoute);
+  app.use("v1/feature", FeatureRouteV1);
   app.get("/", (req: Request, res: Response) => {
     res.json({
       health_check: "ok",
