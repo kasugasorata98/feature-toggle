@@ -14,7 +14,7 @@ async function main() {
     })
   );
 
-  app.use("v1/feature", FeatureRouteV1);
+  app.use("/v1/feature", FeatureRouteV1);
   app.get("/", (req: Request, res: Response) => {
     res.json({
       health_check: "ok",
