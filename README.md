@@ -22,11 +22,23 @@ This is a backend application for managing feature access toggles. It provides t
    npm run dev
    ```
 
+# Deployment
+
+BASE_URL: `http://ec2-13-229-79-137.ap-southeast-1.compute.amazonaws.com:3000`
+
+This application is deployed using GitHub Actions. The deployment pipeline includes the following steps:
+
+- Run unit testing.
+- Build a Docker image of the application using the Dockerfile in the root directory of the project.
+- Push the Docker image to an Amazon Elastic Container Registry (ECR) repository.
+- Deploy the Docker image to an Amazon Elastic Container Service (ECS) cluster.
+- Start a new task on an Amazon Elastic Compute Cloud (EC2) instance running in the ECS cluster.
+
 # Usage
 
 ## Toggling feature access
 
-To toggle feature access for a given user and feature, send a POST request to the /feature-access endpoint with the following parameters:
+To toggle feature access for a given user and feature, send a POST request to the `/feature` endpoint with the following parameters:
 
 - featureName: The name of the feature to toggle access for
 - email: The email address of the user to toggle access for
@@ -35,7 +47,7 @@ To toggle feature access for a given user and feature, send a POST request to th
 Example:
 
 ```json
-POST /feature-access
+POST /feature
 
 {
   "featureName": "example-feature",
@@ -46,7 +58,7 @@ POST /feature-access
 
 ## Checking feature access
 
-To check whether a user has access to a given feature, send a GET request to the /feature-access endpoint with the following parameters:
+To check whether a user has access to a given feature, send a GET request to the /feature endpoint with the following parameters:
 
 - featureName: The name of the feature to check access for
 - email: The email address of the user to check access for
@@ -54,7 +66,7 @@ To check whether a user has access to a given feature, send a GET request to the
 Example:
 
 ```json
-GET /feature-access?featureName=example-feature&email=user@example.com
+GET /feature?featureName=example-feature&email=user@example.com
 ```
 
 The server will respond with a JSON object indicating whether the user has access to the feature:
